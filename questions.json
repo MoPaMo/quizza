@@ -1,0 +1,646 @@
+{
+  "general": [
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": ["Elephant", "Blue Whale", "Giraffe", "Great White Shark"],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "How many continents are there on Earth?",
+      "options": ["5", "6", "7", "8"],
+      "answer": "7"
+    },
+    {
+      "question": "What is the boiling point of water at sea level in Celsius?",
+      "options": ["90C", "100C", "110C", "120C"],
+      "answer": "100C"
+    },
+    {
+      "question": "Which language is the most spoken worldwide?",
+      "options": ["English", "Spanish", "Mandarin Chinese", "Hindi"],
+      "answer": "Mandarin Chinese"
+    },
+    {
+      "question": "What is the smallest prime number?",
+      "options": ["0", "1", "2", "3"],
+      "answer": "2"
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "options": ["Yen", "Won", "Dollar", "Euro"],
+      "answer": "Yen"
+    },
+    {
+      "question": "Who wrote the play 'Hamlet'?",
+      "options": ["Charles Dickens", "William Shakespeare", "George Orwell", "Jane Austen"],
+      "answer": "William Shakespeare"
+    },
+    {
+      "question": "What is the tallest mountain in the world?",
+      "options": ["K2", "Kangchenjunga", "Mount Everest", "Lhotse"],
+      "answer": "Mount Everest"
+    },
+    {
+      "question": "Which element has the chemical symbol 'O'?",
+      "options": ["Osmium", "Oxygen", "Gold", "Silver"],
+      "answer": "Oxygen"
+    },
+    {
+      "question": "What is the largest ocean on Earth?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+      "answer": "Pacific Ocean"
+    }
+  ],
+  "science": [
+    {
+      "question": "What is the chemical symbol for gold?",
+      "options": ["Au", "Ag", "Gd", "Go"],
+      "answer": "Au"
+    },
+    {
+      "question": "Who developed the theory of relativity?",
+      "options": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Marie Curie"],
+      "answer": "Albert Einstein"
+    },
+    {
+      "question": "What is the powerhouse of the cell?",
+      "options": ["Nucleus", "Mitochondria", "Ribosome", "Golgi apparatus"],
+      "answer": "Mitochondria"
+    },
+    {
+      "question": "What gas do plants absorb from the atmosphere?",
+      "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+      "answer": "Carbon Dioxide"
+    },
+    {
+      "question": "What is the hardest natural substance on Earth?",
+      "options": ["Gold", "Iron", "Diamond", "Silver"],
+      "answer": "Diamond"
+    },
+    {
+      "question": "What planet is the largest in our solar system?",
+      "options": ["Saturn", "Jupiter", "Neptune", "Mars"],
+      "answer": "Jupiter"
+    },
+    {
+      "question": "What is the chemical formula for table salt?",
+      "options": ["NaCl", "KCl", "CaCO3", "MgSO4"],
+      "answer": "NaCl"
+    },
+    {
+      "question": "What is the speed of light?",
+      "options": ["300,000 km/s", "150,000 km/s", "450,000 km/s", "600,000 km/s"],
+      "answer": "300,000 km/s"
+    },
+    {
+      "question": "What part of the atom has a positive charge?",
+      "options": ["Electron", "Neutron", "Proton", "Photon"],
+      "answer": "Proton"
+    },
+    {
+      "question": "What is the process by which plants make their food?",
+      "options": ["Respiration", "Digestion", "Photosynthesis", "Transpiration"],
+      "answer": "Photosynthesis"
+    }
+  ],
+  "history": [
+    {
+      "question": "Who was the first President of the United States?",
+      "options": ["Thomas Jefferson", "Abraham Lincoln", "George Washington", "John Adams"],
+      "answer": "George Washington"
+    },
+    {
+      "question": "In which year did World War II end?",
+      "options": ["1945", "1939", "1918", "1963"],
+      "answer": "1945"
+    },
+    {
+      "question": "Which ancient civilization built the pyramids?",
+      "options": ["Romans", "Greeks", "Egyptians", "Mayans"],
+      "answer": "Egyptians"
+    },
+    {
+      "question": "Who was known as the Maid of Orlans?",
+      "options": ["Marie Antoinette", "Joan of Arc", "Catherine de' Medici", "Eleanor of Aquitaine"],
+      "answer": "Joan of Arc"
+    },
+    {
+      "question": "What was the name of the ship on which the Pilgrims traveled to North America in 1620?",
+      "options": ["Santa Maria", "Mayflower", "Endeavour", "Beagle"],
+      "answer": "Mayflower"
+    },
+    {
+      "question": "Who was the British Prime Minister during most of World War II?",
+      "options": ["Winston Churchill", "Neville Chamberlain", "Clement Attlee", "Margaret Thatcher"],
+      "answer": "Winston Churchill"
+    },
+    {
+      "question": "What was the first successful English colony in America?",
+      "options": ["Jamestown", "Plymouth", "Roanoke", "Massachusetts Bay"],
+      "answer": "Jamestown"
+    },
+    {
+      "question": "Which empire was ruled by Genghis Khan?",
+      "options": ["Roman Empire", "Ottoman Empire", "Mongol Empire", "British Empire"],
+      "answer": "Mongol Empire"
+    },
+    {
+      "question": "In which year did the Titanic sink?",
+      "options": ["1912", "1905", "1920", "1898"],
+      "answer": "1912"
+    },
+    {
+      "question": "What was the primary language of the Roman Empire?",
+      "options": ["Greek", "Latin", "Egyptian", "Celtic"],
+      "answer": "Latin"
+    }
+  ],
+  "geography": [
+    {
+      "question": "Which is the longest river in the world?",
+      "options": ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"],
+      "answer": "Nile River"
+    },
+    {
+      "question": "Mount Everest is located in which mountain range?",
+      "options": ["Andes", "Rocky Mountains", "Himalayas", "Alps"],
+      "answer": "Himalayas"
+    },
+    {
+      "question": "What is the capital city of Australia?",
+      "options": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+      "answer": "Canberra"
+    },
+    {
+      "question": "Which country has the largest population?",
+      "options": ["India", "United States", "Indonesia", "China"],
+      "answer": "China"
+    },
+    {
+      "question": "What desert is the largest in the world?",
+      "options": ["Sahara Desert", "Gobi Desert", "Kalahari Desert", "Arctic Desert"],
+      "answer": "Sahara Desert"
+    },
+    {
+      "question": "Which country has the most natural lakes?",
+      "options": ["Canada", "Brazil", "Russia", "United States"],
+      "answer": "Canada"
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "options": ["Monaco", "Vatican City", "Nauru", "San Marino"],
+      "answer": "Vatican City"
+    },
+    {
+      "question": "Which U.S. state has the most active volcanoes?",
+      "options": ["Alaska", "California", "Hawaii", "Washington"],
+      "answer": "Alaska"
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"],
+      "answer": "Ottawa"
+    },
+    {
+      "question": "Which two continents are located entirely in the Western Hemisphere?",
+      "options": ["Europe and Asia", "Africa and Australia", "North America and South America", "Antarctica and Europe"],
+      "answer": "North America and South America"
+    }
+  ],
+  "culture": [
+    {
+      "question": "Which country is famous for the dance called Tango?",
+      "options": ["Brazil", "Argentina", "Spain", "Italy"],
+      "answer": "Argentina"
+    },
+    {
+      "question": "What is the traditional Japanese garment called?",
+      "options": ["Hanbok", "Cheongsam", "Kimono", "Sari"],
+      "answer": "Kimono"
+    },
+    {
+      "question": "In which country did the Olympic Games originate?",
+      "options": ["Italy", "Greece", "France", "United Kingdom"],
+      "answer": "Greece"
+    },
+    {
+      "question": "Which festival is known as the Festival of Lights in India?",
+      "options": ["Holi", "Diwali", "Eid", "Navratri"],
+      "answer": "Diwali"
+    },
+    {
+      "question": "What is the art of paper folding called?",
+      "options": ["Origami", "Calligraphy", "Sculpting", "Ikebana"],
+      "answer": "Origami"
+    },
+    {
+      "question": "Which country celebrates the Carnival festival before Lent?",
+      "options": ["Spain", "Brazil", "Italy", "France"],
+      "answer": "Brazil"
+    },
+    {
+      "question": "What is the traditional Hawaiian garment called?",
+      "options": ["Kimono", "Sari", "Aloha Shirt", "Ao Dai"],
+      "answer": "Aloha Shirt"
+    },
+    {
+      "question": "Which religion celebrates Ramadan?",
+      "options": ["Christianity", "Islam", "Hinduism", "Buddhism"],
+      "answer": "Islam"
+    },
+    {
+      "question": "What is the traditional Russian snowman called?",
+      "options": ["Frosty", "Snegurochka", "Igor", "Vladimir"],
+      "answer": "Snegurochka"
+    },
+    {
+      "question": "Which cuisine is sushi a part of?",
+      "options": ["Chinese", "Japanese", "Korean", "Thai"],
+      "answer": "Japanese"
+    }
+  ],
+  "popculture": [
+    {
+      "question": "Who is the creator of the Star Wars franchise?",
+      "options": ["George Lucas", "J.K. Rowling", "Steven Spielberg", "James Cameron"],
+      "answer": "George Lucas"
+    },
+    {
+      "question": "Which singer released the album 'Thriller' in 1982?",
+      "options": ["Prince", "Madonna", "Michael Jackson", "Bruce Springsteen"],
+      "answer": "Michael Jackson"
+    },
+    {
+      "question": "What is the highest-grossing film of all time (as of 2023)?",
+      "options": ["Avatar", "Avengers: Endgame", "Titanic", "Star Wars: The Force Awakens"],
+      "answer": "Avatar"
+    },
+    {
+      "question": "Which TV series features the fictional town of Hawkins?",
+      "options": ["Stranger Things", "Breaking Bad", "Game of Thrones", "The Crown"],
+      "answer": "Stranger Things"
+    },
+    {
+      "question": "Who played the character of Harry Potter in the film series?",
+      "options": ["Rupert Grint", "Daniel Radcliffe", "Tom Felton", "Matthew Lewis"],
+      "answer": "Daniel Radcliffe"
+    },
+    {
+      "question": "Which artist is known for the hit song 'Shape of You'?",
+      "options": ["Ed Sheeran", "Justin Bieber", "Bruno Mars", "Shawn Mendes"],
+      "answer": "Ed Sheeran"
+    },
+    {
+      "question": "What is the name of the fictional continent where 'Game of Thrones' is set?",
+      "options": ["Middle-earth", "Westeros", "Narnia", "Pandora"],
+      "answer": "Westeros"
+    },
+    {
+      "question": "Which social media platform is known for its 280-character posts?",
+      "options": ["Facebook", "Instagram", "Twitter", "TikTok"],
+      "answer": "Twitter"
+    },
+    {
+      "question": "Who is the lead singer of the band U2?",
+      "options": ["Bono", "Sting", "Freddie Mercury", "Mick Jagger"],
+      "answer": "Bono"
+    },
+    {
+      "question": "Which movie features the song 'Let It Go'?",
+      "options": ["Frozen", "Moana", "Tangled", "Brave"],
+      "answer": "Frozen"
+    }
+  ],
+  "sports": [
+    {
+      "question": "Which country won the FIFA World Cup in 2018?",
+      "options": ["Germany", "Brazil", "France", "Argentina"],
+      "answer": "France"
+    },
+    {
+      "question": "In which sport is the term 'love' used?",
+      "options": ["Basketball", "Cricket", "Tennis", "Football"],
+      "answer": "Tennis"
+    },
+    {
+      "question": "How many players are there in a baseball team?",
+      "options": ["7", "8", "9", "10"],
+      "answer": "9"
+    },
+    {
+      "question": "Which athlete has won the most Olympic medals?",
+      "options": ["Usain Bolt", "Michael Phelps", "Larisa Latynina", "Mark Spitz"],
+      "answer": "Michael Phelps"
+    },
+    {
+      "question": "What is the national sport of Japan?",
+      "options": ["Baseball", "Sumo Wrestling", "Judo", "Karate"],
+      "answer": "Sumo Wrestling"
+    },
+    {
+      "question": "In which sport would you perform a slam dunk?",
+      "options": ["Football", "Basketball", "Volleyball", "Handball"],
+      "answer": "Basketball"
+    },
+    {
+      "question": "Which country hosts the Tour de France?",
+      "options": ["Spain", "Italy", "France", "Belgium"],
+      "answer": "France"
+    },
+    {
+      "question": "How many holes are there in a standard golf course?",
+      "options": ["9", "12", "15", "18"],
+      "answer": "18"
+    },
+    {
+      "question": "Which sport is known as the 'king of sports'?",
+      "options": ["Basketball", "Soccer", "Tennis", "Cricket"],
+      "answer": "Soccer"
+    },
+    {
+      "question": "Who holds the record for the most home runs in a single MLB season?",
+      "options": ["Barry Bonds", "Babe Ruth", "Mark McGwire", "Alex Rodriguez"],
+      "answer": "Barry Bonds"
+    }
+  ],
+  "literature": [
+    {
+      "question": "Who wrote 'Romeo and Juliet'?",
+      "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+      "answer": "William Shakespeare"
+    },
+    {
+      "question": "What is the first book of the Old Testament?",
+      "options": ["Exodus", "Genesis", "Leviticus", "Numbers"],
+      "answer": "Genesis"
+    },
+    {
+      "question": "Who is the author of '1984'?",
+      "options": ["George Orwell", "Aldous Huxley", "F. Scott Fitzgerald", "Ernest Hemingway"],
+      "answer": "George Orwell"
+    },
+    {
+      "question": "In which novel does the character Atticus Finch appear?",
+      "options": ["The Great Gatsby", "To Kill a Mockingbird", "Moby Dick", "Pride and Prejudice"],
+      "answer": "To Kill a Mockingbird"
+    },
+    {
+      "question": "What is the name of the hobbit played by Elijah Wood in the 'Lord of the Rings' movies?",
+      "options": ["Bilbo Baggins", "Frodo Baggins", "Samwise Gamgee", "Peregrin Took"],
+      "answer": "Frodo Baggins"
+    },
+    {
+      "question": "Who wrote the 'Harry Potter' series?",
+      "options": ["J.K. Rowling", "J.R.R. Tolkien", "C.S. Lewis", "Stephen King"],
+      "answer": "J.K. Rowling"
+    },
+    {
+      "question": "What is the title of the first Harry Potter book?",
+      "options": [
+        "Harry Potter and the Chamber of Secrets",
+        "Harry Potter and the Philosopher's Stone",
+        "Harry Potter and the Prisoner of Azkaban",
+        "Harry Potter and the Goblet of Fire"
+      ],
+      "answer": "Harry Potter and the Philosopher's Stone"
+    },
+    {
+      "question": "Who is the author of 'The Catcher in the Rye'?",
+      "options": ["J.D. Salinger", "F. Scott Fitzgerald", "Ernest Hemingway", "Mark Twain"],
+      "answer": "J.D. Salinger"
+    },
+    {
+      "question": "In George R.R. Martin's series, what is the name of Jon Snow's direwolf?",
+      "options": ["Ghost", "Nymeria", "Summer", "Lady"],
+      "answer": "Ghost"
+    },
+    {
+      "question": "Which novel begins with the line 'Call me Ishmael'?",
+      "options": ["Moby Dick", "The Old Man and the Sea", "20,000 Leagues Under the Sea", "The Great Gatsby"],
+      "answer": "Moby Dick"
+    }
+  ],
+  "technology": [
+    {
+      "question": "What does 'CPU' stand for in computer science?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Personal Unit",
+        "Central Performance Utility",
+        "Control Processing Unit"
+      ],
+      "answer": "Central Processing Unit"
+    },
+    {
+      "question": "Which company developed the Windows operating system?",
+      "options": ["Apple", "Google", "Microsoft", "IBM"],
+      "answer": "Microsoft"
+    },
+    {
+      "question": "What does 'HTTP' stand for?",
+      "options": [
+        "HyperText Transfer Protocol",
+        "High Transfer Text Protocol",
+        "HyperText Transmission Process",
+        "Hyper Transfer Text Process"
+      ],
+      "answer": "HyperText Transfer Protocol"
+    },
+    {
+      "question": "Who is known as the father of the World Wide Web?",
+      "options": ["Larry Page", "Tim Berners-Lee", "Steve Jobs", "Mark Zuckerberg"],
+      "answer": "Tim Berners-Lee"
+    },
+    {
+      "question": "What is the name of the first artificial Earth satellite launched by the Soviet Union in 1957?",
+      "options": ["Sputnik 1", "Explorer 1", "Hubble", "Voyager 1"],
+      "answer": "Sputnik 1"
+    },
+    {
+      "question": "What does 'RAM' stand for in computer terminology?",
+      "options": [
+        "Random Access Memory",
+        "Readily Available Memory",
+        "Rapid Action Module",
+        "Remote Access Memory"
+      ],
+      "answer": "Random Access Memory"
+    },
+    {
+      "question": "Which programming language is known for its snake logo?",
+      "options": ["Python", "Java", "C++", "Ruby"],
+      "answer": "Python"
+    },
+    {
+      "question": "What is the primary function of a GPU?",
+      "options": [
+        "Processing audio",
+        "Managing storage",
+        "Rendering graphics",
+        "Controlling network traffic"
+      ],
+      "answer": "Rendering graphics"
+    },
+    {
+      "question": "Which company is known for the smartphone series 'Galaxy'?",
+      "options": ["Apple", "Samsung", "Huawei", "LG"],
+      "answer": "Samsung"
+    },
+    {
+      "question": "What does 'AI' stand for in technology?",
+      "options": [
+        "Artificial Intelligence",
+        "Automated Input",
+        "Advanced Interface",
+        "Applied Informatics"
+      ],
+      "answer": "Artificial Intelligence"
+    }
+  ],
+  "art": [
+    {
+      "question": "Who painted the Mona Lisa?",
+      "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+      "answer": "Leonardo da Vinci"
+    },
+    {
+      "question": "What art movement is Salvador Dalí associated with?",
+      "options": ["Impressionism", "Surrealism", "Cubism", "Baroque"],
+      "answer": "Surrealism"
+    },
+    {
+      "question": "Which artist is known for the sculpture 'The Thinker'?",
+      "options": ["Auguste Rodin", "Henry Moore", "Donatello", "Gian Lorenzo Bernini"],
+      "answer": "Auguste Rodin"
+    },
+    {
+      "question": "What is the art of arranging flowers called?",
+      "options": ["Floristry", "Botany", "Horticulture", "Gardening"],
+      "answer": "Floristry"
+    },
+    {
+      "question": "Which famous building is located in Barcelona and was designed by Antoni Gaudí?",
+      "options": ["Eiffel Tower", "Leaning Tower of Pisa", "Sagrada Familia", "Casa Mil"],
+      "answer": "Sagrada Familia"
+    },
+    {
+      "question": "Who painted the ceiling of the Sistine Chapel?",
+      "options": ["Raphael", "Leonardo da Vinci", "Michelangelo", "Donatello"],
+      "answer": "Michelangelo"
+    },
+    {
+      "question": "What is the term for a painting done on wet plaster?",
+      "options": ["Fresco", "Oil", "Watercolor", "Acrylic"],
+      "answer": "Fresco"
+    },
+    {
+      "question": "Which artist is famous for the artwork 'The Starry Night'?",
+      "options": ["Pablo Picasso", "Vincent van Gogh", "Claude Monet", "Edgar Degas"],
+      "answer": "Vincent van Gogh"
+    },
+    {
+      "question": "What is the primary medium used in sculpture?",
+      "options": ["Oil Paint", "Marble", "Acrylic", "Ink"],
+      "answer": "Marble"
+    },
+    {
+      "question": "Which art movement focuses on abstract forms and colors?",
+      "options": [
+        "Realism",
+        "Impressionism",
+        "Abstract Expressionism",
+        "Surrealism"
+      ],
+      "answer": "Abstract Expressionism"
+    }
+  ],
+  "movies": [
+    {
+      "question": "Which movie features the character Jack Sparrow?",
+      "options": ["Harry Potter", "Pirates of the Caribbean", "The Lord of the Rings", "Star Wars"],
+      "answer": "Pirates of the Caribbean"
+    },
+    {
+      "question": "Who directed the movie 'Inception'?",
+      "options": ["Steven Spielberg", "Christopher Nolan", "James Cameron", "Martin Scorsese"],
+      "answer": "Christopher Nolan"
+    },
+    {
+      "question": "Which film won the Academy Award for Best Picture in 2020?",
+      "options": ["Parasite", "1917", "Joker", "Once Upon a Time in Hollywood"],
+      "answer": "Parasite"
+    },
+    {
+      "question": "What is the highest-grossing animated film of all time (as of 2023)?",
+      "options": ["Frozen", "The Lion King", "Toy Story 4", "Frozen II"],
+      "answer": "The Lion King"
+    },
+    {
+      "question": "Which actor played the character of Tony Stark in the Marvel Cinematic Universe?",
+      "options": ["Chris Hemsworth", "Robert Downey Jr.", "Mark Ruffalo", "Chris Evans"],
+      "answer": "Robert Downey Jr."
+    },
+    {
+      "question": "What is the name of the fictional wizarding school in 'Harry Potter'?",
+      "options": ["Beauxbatons", "Durmstrang", "Hogwarts", "Ilvermorny"],
+      "answer": "Hogwarts"
+    },
+    {
+      "question": "Which movie features the quote, 'I'll be back'?",
+      "options": ["Terminator", "Predator", "Die Hard", "RoboCop"],
+      "answer": "Terminator"
+    },
+    {
+      "question": "Who directed the 'Lord of the Rings' trilogy?",
+      "options": ["Peter Jackson", "Steven Spielberg", "James Cameron", "George Lucas"],
+      "answer": "Peter Jackson"
+    },
+    {
+      "question": "Which film features a protagonist named Neo?",
+      "options": ["The Matrix", "Inception", "Blade Runner", "Minority Report"],
+      "answer": "The Matrix"
+    },
+    {
+      "question": "What is the highest-grossing film franchise of all time?",
+      "options": ["Marvel Cinematic Universe", "Star Wars", "Harry Potter", "James Bond"],
+      "answer": "Marvel Cinematic Universe"
+    }
+  ],
+  "music": [
+    {
+      "question": "Who is known as the 'King of Pop'?",
+      "options": ["Elvis Presley", "Michael Jackson", "Prince", "Madonna"],
+      "answer": "Michael Jackson"
+    },
+    {
+      "question": "Which band released the album 'Abbey Road'?",
+      "options": ["The Beatles", "The Rolling Stones", "Pink Floyd", "Led Zeppelin"],
+      "answer": "The Beatles"
+    },
+    {
+      "question": "Who composed the Four Seasons?",
+      "options": [
+        "Johann Sebastian Bach",
+        "Ludwig van Beethoven",
+        "Antonio Vivaldi",
+        "Wolfgang Amadeus Mozart"
+      ],
+      "answer": "Antonio Vivaldi"
+    },
+    {
+      "question": "Which singer's real name is Stefani Joanne Angelina Germanotta?",
+      "options": ["Lady Gaga", "Beyoncé", "Adele", "Rihanna"],
+      "answer": "Lady Gaga"
+    },
+    {
+      "question": "What is the best-selling album of all time?",
+      "options": ["Thriller", "Back in Black", "The Dark Side of the Moon", "Their Greatest Hits"],
+      "answer": "Thriller"
+    },
+    {
+      "question": "Which artist is known for the song 'Rolling in the Deep'?",
+      "options": ["Adele", "Taylor Swift", "Beyoncé", "Katy Perry"],
+      "answer": "Adele"
+    }
+  ]
+}
