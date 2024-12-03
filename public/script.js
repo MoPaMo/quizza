@@ -1,3 +1,5 @@
+// public/script.js
+
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
 const socket = new WebSocket(`${wsProtocol}://${location.host}`);
 
@@ -38,6 +40,13 @@ joinBtn.addEventListener("click", () => {
   socket.send(JSON.stringify({ type: "set-name", name: playerName }));
   joinSection.classList.add("hidden");
   gameSection.classList.remove("hidden");
+});
+
+// Allow pressing "Enter" to join the game
+nameInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    joinBtn.click();
+  }
 });
 
 // Handle incoming messages
@@ -110,6 +119,10 @@ function displayQuestion(question) {
 
   // Reset and start the timer
   resetTimer(15);
+
+  if (!resultModal.classList.contains("hidden")) {
+    resultModal.classList.add("hidden");
+  }
 }
 
 // Handle option button click
@@ -132,9 +145,8 @@ function handleOptionClick(button, answer) {
   socket.send(JSON.stringify({ type: "submit-answer", answer }));
 }
 
-// Show the correct answer
+// Show the correct answer by highlighting it
 function showCorrectAnswer(correctAnswer) {
-  // Highlight the correct answer
   const allOptionButtons = document.querySelectorAll(".option-btn");
   allOptionButtons.forEach((btn) => {
     if (btn.dataset.option === correctAnswer) {
@@ -149,13 +161,12 @@ function showCorrectAnswer(correctAnswer) {
   clearInterval(timerInterval);
   timerElement.textContent = "0";
 
-  // After a short delay, reset the UI for the next question
   setTimeout(() => {
-    resetUI();
+  resetUI();
   }, 5000);
 }
 
-// Display the result to the player
+// Display the result to the player using the modal
 function displayAnswerResult(correct, score) {
   if (correct) {
     resultText.textContent = "Correct!";
@@ -166,7 +177,7 @@ function displayAnswerResult(correct, score) {
   }
 
   correctAnswerText.textContent = `The correct answer was: ${currentQuestionData.answer}`;
-
+  
   // Show the modal
   resultModal.classList.remove("hidden");
 }
@@ -195,18 +206,25 @@ function resetTimer(duration) {
       timerElement.textContent = timeLeft;
     } else {
       clearInterval(timerInterval);
+      // Optionally, disable option buttons if time runs out and no answer was selected
+      if (!selectedOption) {
+        const allOptionButtons = document.querySelectorAll(".option-btn");
+        allOptionButtons.forEach((btn) => {
+          btn.disabled = true;
+          btn.classList.add("disabled");
+        });
+      }
     }
   }, 1000);
 }
 
-// Close the result modal
+// Close the result modal when the close button is clicked
 closeModal.addEventListener("click", () => {
   resultModal.classList.add("hidden");
 });
 
-// Optional: Allow pressing "Enter" key to join the game
-nameInput.addEventListener("keyup", (event) => {
-  if (event.key === "Enter") {
-    joinBtn.click();
+window.addEventListener("click", (event) => {
+  if (event.target === resultModal) {
+    resultModal.classList.add("hidden");
   }
 });

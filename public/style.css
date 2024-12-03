@@ -229,4 +229,23 @@ body {
     .sidebar {
         width: 25%;
     }
+
+}
+
+
+.option-btn.selected {
+    background-color: #ffc107; 
+}
+
+.option-btn.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.option-btn.correct {
+    background-color: #28a745 !important; 
+}
+
+.option-btn.wrong {
+    background-color: #dc3545 !important;
 }
