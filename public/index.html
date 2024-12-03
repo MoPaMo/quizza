@@ -1,13 +1,51 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quizza</title>
-    <link rel="stylesheet" href="/style.css">
-    <script src="/script.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quizza!</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script defer src="/script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Join  -->
+      <section id="join-section">
+        <h2>Join the Game</h2>
+        <input type="text" id="name-input" placeholder="Enter your name" />
+        <button id="join-btn">Join</button>
+      </section>
 
-    
-</body>
+      <!-- Game  -->
+      <section id="game-section" class="hidden">
+        <div class="header">
+          <div class="category">
+            <h3 id="question-category">Category:</h3>
+          </div>
+          <div class="timer">
+            Time Remaining: <span id="time-remaining">15</span>s
+          </div>
+        </div>
+        <div class="question-container">
+          <p id="question-text">Question will appear here...</p>
+          <div id="options-container" class="options">
+          </div>
+        </div>
+        <div class="sidebar">
+          <h3>Leaderboard</h3>
+          <ul id="players-list">
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Result Modal-->
+    <div id="result-modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2 id="result-text">Result</h2>
+        <p id="correct-answer-text">The correct answer was:</p>
+      </div>
+    </div>
+  </body>
 </html>
