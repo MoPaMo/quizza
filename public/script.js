@@ -1,4 +1,3 @@
-// public/client.js
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
 const socket = new WebSocket(`${wsProtocol}://${location.host}`);
 
@@ -22,6 +21,10 @@ const resultModal = document.getElementById("result-modal");
 const resultText = document.getElementById("result-text");
 const correctAnswerText = document.getElementById("correct-answer-text");
 const closeModal = document.getElementById("close-modal");
+
+// Current question data
+let currentQuestionData = null;
+let selectedOption = null;
 
 // Join the game
 joinBtn.addEventListener("click", () => {
@@ -67,4 +70,143 @@ socket.addEventListener("message", (event) => {
   }
 });
 
+// Update the leaderboard
+function updateLeaderboard(players) {
+  // Convert players object to an array and sort by score descending
+  const sortedPlayers = Object.values(players).sort((a, b) => b.score - a.score);
 
+  // Clear the current list
+  playersList.innerHTML = "";
+
+  // Populate the leaderboard
+  sortedPlayers.forEach((player) => {
+    const li = document.createElement("li");
+    li.textContent = `${player.name}: ${player.score}`;
+    playersList.appendChild(li);
+  });
+}
+
+// Display the new question
+function displayQuestion(question) {
+  currentQuestionData = question;
+  selectedOption = null;
+
+  // Update category and question text
+  questionCategory.textContent = `Category: ${question.category}`;
+  questionText.textContent = question.question;
+
+  // Clear previous options
+  optionsContainer.innerHTML = "";
+
+  // Create buttons for each option
+  question.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.classList.add("option-btn");
+    button.textContent = option;
+    button.dataset.option = option;
+    button.addEventListener("click", () => handleOptionClick(button, option));
+    optionsContainer.appendChild(button);
+  });
+
+  // Reset and start the timer
+  resetTimer(15);
+}
+
+// Handle option button click
+function handleOptionClick(button, answer) {
+  if (selectedOption) return; // Prevent multiple selections
+
+  selectedOption = answer;
+  button.classList.add("selected");
+
+  // Disable all option buttons
+  const allOptionButtons = document.querySelectorAll(".option-btn");
+  allOptionButtons.forEach((btn) => {
+    btn.disabled = true;
+    if (btn !== button) {
+      btn.classList.add("disabled");
+    }
+  });
+
+  // Send the selected answer to the server
+  socket.send(JSON.stringify({ type: "submit-answer", answer }));
+}
+
+// Show the correct answer
+function showCorrectAnswer(correctAnswer) {
+  // Highlight the correct answer
+  const allOptionButtons = document.querySelectorAll(".option-btn");
+  allOptionButtons.forEach((btn) => {
+    if (btn.dataset.option === correctAnswer) {
+      btn.classList.add("correct");
+    }
+    // Remove any selection indicators
+    btn.classList.remove("selected", "disabled");
+    btn.disabled = true;
+  });
+
+  // Stop the timer
+  clearInterval(timerInterval);
+  timerElement.textContent = "0";
+
+  // After a short delay, reset the UI for the next question
+  setTimeout(() => {
+    resetUI();
+  }, 5000);
+}
+
+// Display the result to the player
+function displayAnswerResult(correct, score) {
+  if (correct) {
+    resultText.textContent = "Correct!";
+    resultText.style.color = "#28a745"; // Green
+  } else {
+    resultText.textContent = "Wrong!";
+    resultText.style.color = "#dc3545"; // Red
+  }
+
+  correctAnswerText.textContent = `The correct answer was: ${currentQuestionData.answer}`;
+
+  // Show the modal
+  resultModal.classList.remove("hidden");
+}
+
+// Reset UI for the next question
+function resetUI() {
+  // Clear question and options
+  questionText.textContent = "Waiting for the next question...";
+  optionsContainer.innerHTML = "";
+
+  // Hide the modal if it's visible
+  if (!resultModal.classList.contains("hidden")) {
+    resultModal.classList.add("hidden");
+  }
+}
+
+// Reset the timer
+function resetTimer(duration) {
+  clearInterval(timerInterval);
+  timerElement.textContent = duration;
+
+  timerInterval = setInterval(() => {
+    let timeLeft = parseInt(timerElement.textContent, 10);
+    if (timeLeft > 0) {
+      timeLeft -= 1;
+      timerElement.textContent = timeLeft;
+    } else {
+      clearInterval(timerInterval);
+    }
+  }, 1000);
+}
+
+// Close the result modal
+closeModal.addEventListener("click", () => {
+  resultModal.classList.add("hidden");
+});
+
+// Optional: Allow pressing "Enter" key to join the game
+nameInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    joinBtn.click();
+  }
+});
