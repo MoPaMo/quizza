@@ -29,7 +29,7 @@
       </section>
 
       <!-- Game part -->
-      <section id="game-section" class="hidden" v-if="gameState=='game'">
+      <section id="game-section" class="hidden" v-if="gameState == 'game'">
         <main class="">
           <div class="header">
             <div class="category">
@@ -38,17 +38,21 @@
             <div class="timer">Time Remaining: {{ timeRemaining }}s</div>
           </div>
           <div class="question-container">
-            <p id="question-text">{{questionText}}</p>
+            <p id="question-text">{{ questionText }}</p>
             <div id="options-container" class="options">
               <button
                 class="option-btn"
-                v-for="(option, index) in questions"
+                v-for="(option, index) in options"
                 :key="index"
                 :class="{
-                selected: selectedOption === option,
-                correct: revealAnswer && option === correctAnswer,
-                wrong: revealAnswer && selectedOption === option && option !== correctAnswer
-              }"
+                  selected: selectedOption === option,
+                  correct:
+                    revealAnswer && option === correctAnswer,
+                  wrong:
+                    revealAnswer &&
+                    selectedOption === option &&
+                    option !== correctAnswer
+                }"
                 @click="submitAnswer(option)"
                 :disabled="revealAnswer || timerEnded"
               >
@@ -68,16 +72,15 @@
       </section>
     </div>
 
-    <!-- Result Modal-->
+    <!-- Result Modal -->
     <div id="result-modal" class="modal" v-if="modalShown">
       <div class="modal-content">
         <span class="close" @click="modalShown = false">&times;</span>
         <h2>{{ modalTitle }}</h2>
-        <p v-if="modalType === 'result'">
+        <p v-if="modalType === 'reveal'">
           The correct answer was: {{ correctAnswer }}
         </p>
-        <p v-else-if="modalType === 'timeUp'">Time's up!</p>
-        <p v-if="modalType === 'result'">Your Score: {{ playerScore }}</p>
+        <p v-if="modalType === 'reveal'">Your Score: {{ playerScore }}</p>
       </div>
     </div>
   </body>

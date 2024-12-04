@@ -10,23 +10,24 @@ createApp({
       players: {},
       category: "Loading...",
       questionText: "Loading...",
-      questions: [],
+      options: [], 
       correctAnswer: "",
       selectedOption: null,
       revealAnswer: false,
       timeRemaining: 15,
       timerInterval: null,
-      timerEnded: false,
       modalShown: false,
-      modalType: "", // result /reveal /timeUp
+      modalType: "", // result / reveal
       modalTitle: "",
       playerScore: 0,
     };
   },
   computed: {
     sortedPlayers() {
-      // to get leaderboard sorted by score
-      return Object.values(this.players).sort((a, b) => b.score - a.score);
+      // Get leaderboard sorted by score descending
+      return Object.entries(this.players)
+        .map(([id, player]) => ({ id, ...player }))
+        .sort((a, b) => b.score - a.score);
     },
   },
   methods: {
@@ -36,16 +37,15 @@ createApp({
         alert("Please enter your name.");
         return;
       }
-      //connect with name
+      // Connect with name
       this.connectWebSocket(name);
     },
     connectWebSocket(name) {
-      const wsProtocol = location.protocol === "https:" ? "wss" : "ws"; //choose secure protocol if https
+      const wsProtocol = location.protocol === "https:" ? "wss" : "ws"; // Choose secure protocol if https
       this.socket = new WebSocket(`${wsProtocol}://${location.host}`);
 
       this.socket.addEventListener("open", () => {
         //login with name
-        this.socket.send(JSON.stringify({ type: "join" }));
         this.socket.send(JSON.stringify({ type: "set-name", name }));
       });
 
@@ -56,7 +56,7 @@ createApp({
 
       this.socket.addEventListener("close", () => {
         console.warn("WebSocket connection closed.");
-        // todo: reconnection  if network failure
+        alert("Connection lost. Please refresh the page to reconnect.");
       });
 
       this.socket.addEventListener("error", (error) => {
@@ -87,95 +87,55 @@ createApp({
         case "reveal-answer":
           this.revealAnswer = true;
           this.correctAnswer = data.correctAnswer;
-          this.showResultModal(null); // No specific result, answer is revealed
-          break;
-
-        case "time-up":
-          this.timerEnded = true;
-          this.showTimeUpModal();
-          break;
-
-        case "answer-result":
-          this.handleAnswerResult(data);
+          this.players = data.players; // Updated player scores
+          if (this.playerId && this.players[this.playerId]) {
+            this.playerScore = this.players[this.playerId].score;
+          }
+          this.showRevealModal();
           break;
 
         default:
           console.warn(`Unknown message type: ${data.type}`);
       }
     },
-    handleAnswerResult(data) {
-      if (data.correct) {
-        this.playerScore = data.score;
-        this.showResultModal(true);
-      } else {
-        this.showResultModal(false);
-      }
-    },
     displayQuestion(question) {
-      this.currentQuestionData = question;
+      // Reset state for new question
       this.selectedOption = null;
       this.revealAnswer = false;
-      this.timerEnded = false;
+      this.correctAnswer = "";
 
       this.category = question.category;
       this.questionText = question.question;
-      this.questions = question.options;
-      this.correctAnswer = question.answer;
+      this.options = question.options;
 
-      this.startTimer(15);
+      this.timeRemaining = 15;
+      clearInterval(this.timerInterval);
+      this.startTimer();
     },
     submitAnswer(option) {
-      if (this.selectedOption || this.revealAnswer || this.timerEnded) return; // don't run if already answered/time up
+      if (this.selectedOption || this.revealAnswer) return; // no multiple answers
 
       this.selectedOption = option;
       this.socket.send(
         JSON.stringify({ type: "submit-answer", answer: option })
       );
     },
-    startTimer(duration) {
-      this.timeRemaining = duration;
-      clearInterval(this.timerInterval);
+    startTimer() {
       this.timerInterval = setInterval(() => {
         if (this.timeRemaining > 0) {
           this.timeRemaining -= 1;
         } else {
-          // time up
           clearInterval(this.timerInterval);
-          this.timerEnded = true;
-          this.socket.send(JSON.stringify({ type: "time-up" }));
-          this.showTimeUpModal();
         }
       }, 1000);
     },
-    // Utility modals:
-
-    showResultModal(isCorrect) {
-      if (isCorrect === null) {
-        // This case is for when the answer is revealed without a specific result
-        this.modalType = "reveal";
-        this.modalTitle = "Answer Revealed!";
-      } else if (isCorrect) {
-        this.modalType = "result";
-        this.modalTitle = "Correct!";
-      } else {
-        this.modalType = "result";
-        this.modalTitle = "Wrong!";
-      }
-
+    showRevealModal() {
+      this.modalType = "reveal";
+      this.modalTitle = `Time's Up!`;
       this.modalShown = true;
 
+      // Automatically hide the modal after 3 seconds
       setTimeout(() => {
-        // Hide modal after 3 seconds
-        this.modalShown = false;
-      }, 3000);
-    },
-    showTimeUpModal() {
-      this.modalType = "timeUp";
-      this.modalTitle = "Time's Up!";
-      this.modalShown = true;
-
-      setTimeout(() => {
-        // Hide after 3s
         this.modalShown = false;
       }, 3000);
     },

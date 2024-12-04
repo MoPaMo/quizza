@@ -20,7 +20,7 @@ try {
 }
 
 // Game state
-let players = {}; // { playerId: { name, score, ws } }
+let players = {}; // { playerId: { name, score, ws, hasAnswered } }
 let currentQuestion = null;
 let currentCategory = null;
 let currentQuestionIndex = 0;
@@ -55,6 +55,11 @@ function selectNextQuestion() {
   currentQuestion = questions[currentCategory][currentQuestionIndex];
   currentQuestionIndex++;
 
+  // Reset 'hasAnswered' flag for all players
+  for (const player of Object.values(players)) {
+    player.hasAnswered = false;
+  }
+
   // Broadcast the new question to all players
   broadcast({
     type: "new-question",
@@ -71,20 +76,34 @@ function selectNextQuestion() {
   // Set timer for accepting answers
   setTimeout(() => {
     acceptingAnswers = false;
-    // Reveal the correct answer
-    broadcast({
-      type: "reveal-answer",
-      correctAnswer: currentQuestion.answer,
-    });
-    // Move to the next question after a short delay
-    setTimeout(selectNextQuestion, 5000);
+    revealAnswer();
   }, 15000); // 15 seconds per question
+}
+
+// reveal the correct answer, update scores
+function revealAnswer() {
+  // Calculate scores based on answers
+  for (const player of Object.values(players)) {
+    if (player.selectedAnswer === currentQuestion.answer) {
+      player.score += 10;
+    }
+  }
+
+  // Broadcast correct answer and updated player scores
+  broadcast({
+    type: "reveal-answer",
+    correctAnswer: currentQuestion.answer,
+    players: getPublicPlayers(),
+  });
+
+  // Move to next question after short delay
+  setTimeout(selectNextQuestion, 5000); // 5 seconds delay
 }
 
 // Handle new WebSocket connections
 wss.on("connection", (ws) => {
   const playerId = uuidv4();
-  players[playerId] = { name: "Anonymous", score: 0, ws };
+  players[playerId] = { name: "Anonymous", score: 0, ws, hasAnswered: false, selectedAnswer: null };
 
   // Send a welcome message with the assigned player ID
   ws.send(JSON.stringify({ type: "welcome", playerId }));
@@ -119,24 +138,13 @@ wss.on("connection", (ws) => {
 
     if (data.type === "set-name") {
       // Update player name
-      players[playerId].name = data.name || "Anonymous";
+      players[playerId].name = data.name.trim() || "Anonymous";
       broadcast({ type: "player-update", players: getPublicPlayers() });
     } else if (data.type === "submit-answer" && acceptingAnswers) {
       const player = players[playerId];
-      if (!player.answered) {
-        player.answered = true;
-        if (data.answer === currentQuestion.answer) {
-          player.score += 10;
-          ws.send(
-            JSON.stringify({
-              type: "answer-result",
-              correct: true,
-              score: player.score,
-            })
-          );
-        } else {
-          ws.send(JSON.stringify({ type: "answer-result", correct: false }));
-        }
+      if (!player.hasAnswered) {
+        player.hasAnswered = true;
+        player.selectedAnswer = data.answer;
         broadcast({ type: "player-update", players: getPublicPlayers() });
       }
     }
@@ -160,6 +168,10 @@ function getPublicPlayers() {
 
 // Start the game loop
 function startGame() {
+  if (Object.keys(questions).length === 0) {
+    console.error("No questions available to start the game.");
+    return;
+  }
   selectNextQuestion();
 }
 
