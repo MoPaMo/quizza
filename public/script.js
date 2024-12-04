@@ -29,7 +29,16 @@ createApp({
       return Object.values(this.players).sort((a, b) => b.score - a.score);
     },
   },
-  methods: {},
+  methods: {
+    joinGame() {
+        const name = this.playerName.trim();
+        if (name === '') {
+          alert('Please enter your name.');
+          return;
+        }
+        //connect with name
+    }
+  },
 }).mount("body");
 
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
