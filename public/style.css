@@ -140,7 +140,6 @@ main {
 /* Sidebar (Leaderboard) */
 .sidebar {
   flex-grow: 0;
-
   background-color: #fff;
   padding: 15px;
   border-radius: 8px;
