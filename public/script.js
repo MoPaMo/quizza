@@ -129,6 +129,17 @@ createApp({
           }
         }, 1000);
       },
+      //utility modals:
+
+    showResultModal(correct) {
+        this.modalType = 'result';
+        this.modalTitle = correct ? 'Correct!' : 'Wrong!';
+        this.modalShown = true;
+        
+        setTimeout(() => {
+          this.modalShown = false;
+        }, 5000);
+      },
 
   },
 }).mount("body");
