@@ -96,6 +96,26 @@ createApp({
           console.warn("Unknown message type:", data.type);
       }
     },
+    displayQuestion(question) {
+        this.currentQuestionData = question;
+        this.selectedOption = null;
+        this.revealAnswer = false;
+        this.timerEnded = false;
+  
+        this.category = question.category;
+        this.questionText = question.question;
+        this.questions = question.options;
+        this.correctAnswer = question.answer; 
+  
+        this.startTimer(15);
+      },
+      submitAnswer(option) {
+        if (this.selectedOption || this.revealAnswer || this.timerEnded) return; // dont run if already answered/tme up
+  
+        this.selectedOption = option;
+        this.socket.send(JSON.stringify({ type: 'submit-answer', answer: option }));
+      },
+
   },
 }).mount("body");
 
