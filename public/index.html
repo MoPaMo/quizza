@@ -17,14 +17,14 @@
   <body >
     <div class="container">
       <!-- Join  -->
-      <section id="join-section">
+      <section id="join-section" v-if="gameState=='join'">
         <h2>Join the Game</h2>
         <input type="text" id="name-input" placeholder="Enter your name" />
         <button id="join-btn">Join</button>
       </section>
 
       <!-- Game  -->
-      <section id="game-section" class="hidden">
+      <section id="game-section" class="hidden" v-if="gameState=='game'">
         <div class="header">
           <div class="category">
             <h3 id="question-category">Category:</h3>

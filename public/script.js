@@ -6,7 +6,8 @@ createApp({
     return {
       count: 1,
       modalShown: false,
-      answer:''
+      answer:'hi',
+      gameState:'join'
     }
   }
 }).mount('body')
