@@ -83,7 +83,7 @@ createApp({
         case "reveal-answer":
           this.revealAnswer = true;
           this.correctAnswer = data.correctAnswer;
-          this.playerScore = data.score; 
+          this.playerScore = data.score;
           this.showResultModal(data.correct);
           break;
 
@@ -97,50 +97,52 @@ createApp({
       }
     },
     displayQuestion(question) {
-        this.currentQuestionData = question;
-        this.selectedOption = null;
-        this.revealAnswer = false;
-        this.timerEnded = false;
-  
-        this.category = question.category;
-        this.questionText = question.question;
-        this.questions = question.options;
-        this.correctAnswer = question.answer; 
-  
-        this.startTimer(15);
-      },
-      submitAnswer(option) {
-        if (this.selectedOption || this.revealAnswer || this.timerEnded) return; // dont run if already answered/tme up
-  
-        this.selectedOption = option;
-        this.socket.send(JSON.stringify({ type: 'submit-answer', answer: option }));
-      },
-      startTimer(duration) {
-        this.timeRemaining = duration;
-        clearInterval(this.timerInterval);
-        this.timerInterval = setInterval(() => {
-          if (this.timeRemaining > 0) {
-            this.timeRemaining -= 1;
-          } else { // time up
-            clearInterval(this.timerInterval); 
-            this.timerEnded = true;
-            this.socket.send(JSON.stringify({ type: 'time-up' }));
-            this.showTimeUpModal();
-          }
-        }, 1000);
-      },
-      //utility modals:
+      this.currentQuestionData = question;
+      this.selectedOption = null;
+      this.revealAnswer = false;
+      this.timerEnded = false;
+
+      this.category = question.category;
+      this.questionText = question.question;
+      this.questions = question.options;
+      this.correctAnswer = question.answer;
+
+      this.startTimer(15);
+    },
+    submitAnswer(option) {
+      if (this.selectedOption || this.revealAnswer || this.timerEnded) return; // dont run if already answered/tme up
+
+      this.selectedOption = option;
+      this.socket.send(
+        JSON.stringify({ type: "submit-answer", answer: option })
+      );
+    },
+    startTimer(duration) {
+      this.timeRemaining = duration;
+      clearInterval(this.timerInterval);
+      this.timerInterval = setInterval(() => {
+        if (this.timeRemaining > 0) {
+          this.timeRemaining -= 1;
+        } else {
+          // time up
+          clearInterval(this.timerInterval);
+          this.timerEnded = true;
+          this.socket.send(JSON.stringify({ type: "time-up" }));
+          this.showTimeUpModal();
+        }
+      }, 1000);
+    },
+    //utility modals:
 
     showResultModal(correct) {
-        this.modalType = 'result';
-        this.modalTitle = correct ? 'Correct!' : 'Wrong!';
-        this.modalShown = true;
-        
-        setTimeout(() => {
-          this.modalShown = false;
-        }, 5000);
-      },
+      this.modalType = "result";
+      this.modalTitle = correct ? "Correct!" : "Wrong!";
+      this.modalShown = true;
 
+      setTimeout(() => {
+        this.modalShown = false;
+      }, 5000);
+    },
   },
 }).mount("body");
 
