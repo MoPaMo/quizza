@@ -33,15 +33,26 @@
         <main class="">
           <div class="header">
             <div class="category">
-              <h3 id="question-category">Category:{{category}}</h3>
+              <h3>Category: {{ category }}</h3>
             </div>
-            <div class="timer">Time Remaining: {{timeRemaining}}s</div>
+            <div class="timer">Time Remaining: {{ timeRemaining }}s</div>
           </div>
           <div class="question-container">
             <p id="question-text">{{questionText}}</p>
             <div id="options-container" class="options">
-              <button class="option-btn" v-for="question in questions">
-                {{question}}
+              <button
+                class="option-btn"
+                v-for="(option, index) in questions"
+                :key="index"
+                :class="{
+                selected: selectedOption === option,
+                correct: revealAnswer && option === correctAnswer,
+                wrong: revealAnswer && selectedOption === option && option !== correctAnswer
+              }"
+                @click="submitAnswer(option)"
+                :disabled="revealAnswer || timerEnded"
+              >
+                {{ option }}
               </button>
             </div>
           </div>
