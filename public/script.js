@@ -18,7 +18,7 @@ createApp({
       timerInterval: null,
       timerEnded: false,
       modalShown: false,
-      modalType: "", // result /timeUp
+      modalType: "", // result /reveal /timeUp
       modalTitle: "",
       playerScore: 0,
     };
@@ -40,7 +40,7 @@ createApp({
       this.connectWebSocket(name);
     },
     connectWebSocket(name) {
-      const wsProtocol = location.protocol === "https:" ? "wss" : "ws"; //chose secure protocol if https
+      const wsProtocol = location.protocol === "https:" ? "wss" : "ws"; //choose secure protocol if https
       this.socket = new WebSocket(`${wsProtocol}://${location.host}`);
 
       this.socket.addEventListener("open", () => {
@@ -61,7 +61,7 @@ createApp({
 
       this.socket.addEventListener("error", (error) => {
         console.error("WebSocket error:", error);
-        alert("An error occured while listening to the server:", error);
+        alert("An error occurred while listening to the server:", error);
       });
 
       this.gameState = "game";
@@ -74,6 +74,10 @@ createApp({
 
         case "player-update":
           this.players = data.players;
+          // Update this player's score if available
+          if (this.playerId && this.players[this.playerId]) {
+            this.playerScore = this.players[this.playerId].score;
+          }
           break;
 
         case "new-question":
@@ -83,8 +87,7 @@ createApp({
         case "reveal-answer":
           this.revealAnswer = true;
           this.correctAnswer = data.correctAnswer;
-          this.playerScore = data.score;
-          this.showResultModal(data.correct);
+          this.showResultModal(null); // No specific result, answer is revealed
           break;
 
         case "time-up":
@@ -92,8 +95,20 @@ createApp({
           this.showTimeUpModal();
           break;
 
+        case "answer-result":
+          this.handleAnswerResult(data);
+          break;
+
         default:
-          console.warn("Unknown message type:", data.type);
+          console.warn(`Unknown message type: ${data.type}`);
+      }
+    },
+    handleAnswerResult(data) {
+      if (data.correct) {
+        this.playerScore = data.score;
+        this.showResultModal(true);
+      } else {
+        this.showResultModal(false);
       }
     },
     displayQuestion(question) {
@@ -110,7 +125,7 @@ createApp({
       this.startTimer(15);
     },
     submitAnswer(option) {
-      if (this.selectedOption || this.revealAnswer || this.timerEnded) return; // dont run if already answered/tme up
+      if (this.selectedOption || this.revealAnswer || this.timerEnded) return; // don't run if already answered/time up
 
       this.selectedOption = option;
       this.socket.send(
@@ -132,17 +147,27 @@ createApp({
         }
       }, 1000);
     },
-    //utility modals:
+    // Utility modals:
 
-    showResultModal(correct) {
-      this.modalType = "result";
-      this.modalTitle = correct ? "Correct!" : "Wrong!";
+    showResultModal(isCorrect) {
+      if (isCorrect === null) {
+        // This case is for when the answer is revealed without a specific result
+        this.modalType = "reveal";
+        this.modalTitle = "Answer Revealed!";
+      } else if (isCorrect) {
+        this.modalType = "result";
+        this.modalTitle = "Correct!";
+      } else {
+        this.modalType = "result";
+        this.modalTitle = "Wrong!";
+      }
+
       this.modalShown = true;
 
       setTimeout(() => {
-        //hide modal after 5 seconds
+        // Hide modal after 3 seconds
         this.modalShown = false;
-      }, 5000);
+      }, 3000);
     },
     showTimeUpModal() {
       this.modalType = "timeUp";
@@ -150,9 +175,9 @@ createApp({
       this.modalShown = true;
 
       setTimeout(() => {
-        //hide after 5s
+        // Hide after 3s
         this.modalShown = false;
-      }, 5000);
+      }, 3000);
     },
   },
   beforeUnmount() {
