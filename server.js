@@ -127,7 +127,13 @@ wss.on("connection", (ws) => {
         player.answered = true;
         if (data.answer === currentQuestion.answer) {
           player.score += 10;
-          ws.send(JSON.stringify({ type: "answer-result", correct: true, score: player.score }));
+          ws.send(
+            JSON.stringify({
+              type: "answer-result",
+              correct: true,
+              score: player.score,
+            })
+          );
         } else {
           ws.send(JSON.stringify({ type: "answer-result", correct: false }));
         }
