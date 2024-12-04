@@ -30,7 +30,7 @@ body {
   color: #333;
 }
 
-#name-input {
+#join-section input {
   width: 80%;
   padding: 10px;
   margin-bottom: 20px;
@@ -39,7 +39,7 @@ body {
   font-size: 16px;
 }
 
-#join-btn {
+#join-section button {
   padding: 10px 20px;
   background-color: #28a745;
   color: #fff;
@@ -50,7 +50,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-#join-btn:hover {
+#join-section button:hover {
   background-color: #218838;
 }
 
@@ -66,12 +66,10 @@ body {
   margin-top: 20px;
 }
 
-.hidden {
-  display: none;
-}
 main {
   flex-grow: 1;
 }
+
 .header {
   width: 100%;
   display: flex;
@@ -125,16 +123,25 @@ main {
   transition: background-color 0.3s ease;
 }
 
-.option-btn:hover {
+.option-btn:hover:not(.disabled) {
   background-color: #0056b3;
 }
 
 .option-btn.correct {
-  background-color: #28a745;
+  background-color: #28a745 !important;
 }
 
 .option-btn.wrong {
-  background-color: #dc3545;
+  background-color: #dc3545 !important;
+}
+
+.option-btn.selected {
+  background-color: #ffc107;
+}
+
+.option-btn.disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 
 /* Sidebar (Leaderboard) */
@@ -207,12 +214,12 @@ main {
   color: #000;
 }
 
-#result-text {
+#result-modal h2 {
   margin-bottom: 20px;
   color: #333;
 }
 
-#correct-answer-text {
+#result-modal p {
   font-size: 18px;
   color: #555;
 }
@@ -222,21 +229,4 @@ main {
     flex-direction: row;
     width: 100%;
   }
-}
-
-.option-btn.selected {
-  background-color: #ffc107;
-}
-
-.option-btn.disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
-}
-
-.option-btn.correct {
-  background-color: #28a745 !important;
-}
-
-.option-btn.wrong {
-  background-color: #dc3545 !important;
 }
