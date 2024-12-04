@@ -58,28 +58,27 @@
           </div>
         </main>
         <div class="sidebar" @click="modalShown = true">
-            <h3>Leaderboard</h3>
-            <ul id="players-list">
-              <li v-for="player in sortedPlayers" :key="player.id">
-                {{ player.name }}: {{ player.score }}
-              </li>
-            </ul>
-          </div>
+          <h3>Leaderboard</h3>
+          <ul id="players-list">
+            <li v-for="player in sortedPlayers" :key="player.id">
+              {{ player.name }}: {{ player.score }}
+            </li>
+          </ul>
+        </div>
       </section>
     </div>
 
-
-
     <!-- Result Modal-->
     <div id="result-modal" class="modal" v-if="modalShown">
-        <div class="modal-content">
-          <span class="close" @click="modalShown = false">&times;</span>
-          <h2>{{ modalTitle }}</h2>
-          <p v-if="modalType === 'result'">The correct answer was: {{ correctAnswer }}</p>
-          <p v-else-if="modalType === 'timeUp'">Time's up!</p>
-          <p v-if="modalType === 'result'">Your Score: {{ playerScore }}</p>
-        </div>
+      <div class="modal-content">
+        <span class="close" @click="modalShown = false">&times;</span>
+        <h2>{{ modalTitle }}</h2>
+        <p v-if="modalType === 'result'">
+          The correct answer was: {{ correctAnswer }}
+        </p>
+        <p v-else-if="modalType === 'timeUp'">Time's up!</p>
+        <p v-if="modalType === 'result'">Your Score: {{ playerScore }}</p>
       </div>
-
+    </div>
   </body>
 </html>
