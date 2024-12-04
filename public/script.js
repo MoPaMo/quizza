@@ -29,6 +29,7 @@ createApp({
       return Object.values(this.players).sort((a, b) => b.score - a.score);
     },
   },
+  methods: {},
 }).mount("body");
 
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
