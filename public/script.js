@@ -139,7 +139,8 @@ createApp({
       this.modalTitle = correct ? "Correct!" : "Wrong!";
       this.modalShown = true;
 
-      setTimeout(() => { //hide modal after 5 seconds
+      setTimeout(() => {
+        //hide modal after 5 seconds
         this.modalShown = false;
       }, 5000);
     },
@@ -148,7 +149,8 @@ createApp({
       this.modalTitle = "Time's Up!";
       this.modalShown = true;
 
-      setTimeout(() => {//hide after 5s
+      setTimeout(() => {
+        //hide after 5s
         this.modalShown = false;
       }, 5000);
     },
@@ -158,6 +160,5 @@ createApp({
       this.socket.close();
     }
     clearInterval(this.timerInterval);
-  }
-  
+  },
 }).mount("body");
