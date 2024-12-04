@@ -1,4 +1,13 @@
 // public/script.js
+import { createApp } from 'vue'
+
+createApp({
+  data() {
+    return {
+      count: 1
+    }
+  }
+}).mount('body')
 
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
 const socket = new WebSocket(`${wsProtocol}://${location.host}`);
@@ -7,22 +16,7 @@ let playerId = null;
 let playerName = "";
 let timerInterval = null;
 
-// Elements
-const joinSection = document.getElementById("join-section");
-const nameInput = document.getElementById("name-input");
-const joinBtn = document.getElementById("join-btn");
 
-const gameSection = document.getElementById("game-section");
-const questionCategory = document.getElementById("question-category");
-const questionText = document.getElementById("question-text");
-const optionsContainer = document.getElementById("options-container");
-const playersList = document.getElementById("players-list");
-const timerElement = document.getElementById("time-remaining");
-
-const resultModal = document.getElementById("result-modal");
-const resultText = document.getElementById("result-text");
-const correctAnswerText = document.getElementById("correct-answer-text");
-const closeModal = document.getElementById("close-modal");
 
 // Current question data
 let currentQuestionData = null;
