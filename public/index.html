@@ -17,10 +17,15 @@
   <body>
     <div class="container">
       <!-- Join  -->
-      <section id="join-section" v-if="gameState=='join'">
+      <section v-if="gameState === 'join'" id="join-section">
         <h2>Join the Game</h2>
-        <input type="text" id="name-input" placeholder="Enter your name" />
-        <button @click="join">Join</button>
+        <input
+          type="text"
+          v-model="playerName"
+          placeholder="Enter your name"
+          @keyup.enter="joinGame"
+        />
+        <button @click="joinGame">Join</button>
       </section>
 
       <!-- Game  -->
