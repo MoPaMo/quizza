@@ -7,7 +7,9 @@ createApp({
       count: 1,
       modalShown: false,
       answer:'hi',
-      gameState:'join'
+      gameState:'join',
+      timeRemaining:15,
+      category:'loading'
     }
   }
 }).mount('body')
