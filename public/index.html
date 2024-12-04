@@ -34,7 +34,11 @@
           </div>
           <div class="question-container">
             <p id="question-text">{{questionText}}</p>
-            <div id="options-container" class="options"></div>
+            <div id="options-container" class="options">
+              <button class="option-btn" v-for="question in questions">
+                {{question}}
+              </button>
+            </div>
           </div>
         </main>
         <div class="sidebar" @click="modalShown=true">

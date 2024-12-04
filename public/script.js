@@ -11,6 +11,7 @@ createApp({
       timeRemaining:15,
       category:'loading',
       questionText:'loading',
+      questions:["hi", "hi2"]
     }
   }
 }).mount('body')
