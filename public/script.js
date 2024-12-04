@@ -31,51 +31,77 @@ createApp({
   },
   methods: {
     joinGame() {
-        const name = this.playerName.trim();
-        if (name === '') {
-          alert('Please enter your name.');
-          return;
-        }
-        //connect with name
-        this.connectWebSocket(name);
+      const name = this.playerName.trim();
+      if (name === "") {
+        alert("Please enter your name.");
+        return;
+      }
+      //connect with name
+      this.connectWebSocket(name);
     },
     connectWebSocket(name) {
-        const wsProtocol = location.protocol === 'https:' ? 'wss' : 'ws'; //chose secure protocol if https
-        this.socket = new WebSocket(`${wsProtocol}://${location.host}`);
-  
-        this.socket.addEventListener('open', () => { //login with name
-          this.socket.send(JSON.stringify({ type: 'join' }));
-          this.socket.send(JSON.stringify({ type: 'set-name', name }));
-        });
-  
-        this.socket.addEventListener('message', (event) => {
-          const data = JSON.parse(event.data);
-          this.handleSocketMessage(data);
-        });
-  
-        this.socket.addEventListener('close', () => {
-          console.warn('WebSocket connection closed.');
-          // todo: reconnection  if network failure
-        });
-  
-        this.socket.addEventListener('error', (error) => {
-          console.error('WebSocket error:', error);
-          alert("An error occured while listening to the server:", error)
-        });
-  
-        this.gameState = 'game';
-      },
-    
-    }
+      const wsProtocol = location.protocol === "https:" ? "wss" : "ws"; //chose secure protocol if https
+      this.socket = new WebSocket(`${wsProtocol}://${location.host}`);
 
-  }).mount("body");
+      this.socket.addEventListener("open", () => {
+        //login with name
+        this.socket.send(JSON.stringify({ type: "join" }));
+        this.socket.send(JSON.stringify({ type: "set-name", name }));
+      });
 
+      this.socket.addEventListener("message", (event) => {
+        const data = JSON.parse(event.data);
+        this.handleSocketMessage(data);
+      });
+
+      this.socket.addEventListener("close", () => {
+        console.warn("WebSocket connection closed.");
+        // todo: reconnection  if network failure
+      });
+
+      this.socket.addEventListener("error", (error) => {
+        console.error("WebSocket error:", error);
+        alert("An error occured while listening to the server:", error);
+      });
+
+      this.gameState = "game";
+    },
+    handleSocketMessage(data) {
+      switch (data.type) {
+        case "welcome":
+          this.playerId = data.playerId;
+          break;
+
+        case "player-update":
+          this.players = data.players;
+          break;
+
+        case "new-question":
+          this.displayQuestion(data.question);
+          break;
+
+        case "reveal-answer":
+          this.revealAnswer = true;
+          this.correctAnswer = data.correctAnswer;
+          this.playerScore = data.score; 
+          this.showResultModal(data.correct);
+          break;
+
+        case "time-up":
+          this.timerEnded = true;
+          this.showTimeUpModal();
+          break;
+
+        default:
+          console.warn("Unknown message type:", data.type);
+      }
+    },
+  },
+}).mount("body");
 
 let playerId = null;
 let playerName = "";
 let timerInterval = null;
-
-
 
 // Handle incoming messages
 socket.addEventListener("message", (event) => {
