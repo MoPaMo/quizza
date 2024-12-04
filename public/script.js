@@ -22,7 +22,13 @@ createApp({
         modalTitle: '',
         playerScore: 0,
       }
-  }
+      
+  },
+  computed: {
+    sortedPlayers() {
+      return Object.values(this.players).sort((a, b) => b.score - a.score);
+    },
+  },
 }).mount('body')
 
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
