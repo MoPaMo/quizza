@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizza!</title>
     <link rel="stylesheet" href="/style.css" />
-    <script defer src="/script.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -28,13 +34,11 @@
         </div>
         <div class="question-container">
           <p id="question-text">Question will appear here...</p>
-          <div id="options-container" class="options">
-          </div>
+          <div id="options-container" class="options"></div>
         </div>
         <div class="sidebar">
           <h3>Leaderboard</h3>
-          <ul id="players-list">
-          </ul>
+          <ul id="players-list"></ul>
         </div>
       </section>
     </div>
