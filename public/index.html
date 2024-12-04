@@ -28,7 +28,7 @@
         <button @click="joinGame">Join</button>
       </section>
 
-      <!-- Game  -->
+      <!-- Game part -->
       <section id="game-section" class="hidden" v-if="gameState=='game'">
         <main class="">
           <div class="header">
@@ -68,16 +68,18 @@
       </section>
     </div>
 
-    <!-- Result Modal-->
 
+
+    <!-- Result Modal-->
     <div id="result-modal" class="modal" v-if="modalShown">
-      <div class="modal-content">
-        <span id="close-modal" class="close" @click="modalShown=false"
-          >&times;</span
-        >
-        <h2 id="result-text">Result</h2>
-        <p id="correct-answer-text">The correct answer was: {{answer}}</p>
+        <div class="modal-content">
+          <span class="close" @click="modalShown = false">&times;</span>
+          <h2>{{ modalTitle }}</h2>
+          <p v-if="modalType === 'result'">The correct answer was: {{ correctAnswer }}</p>
+          <p v-else-if="modalType === 'timeUp'">Time's up!</p>
+          <p v-if="modalType === 'result'">Your Score: {{ playerScore }}</p>
+        </div>
       </div>
-    </div>
+
   </body>
 </html>
