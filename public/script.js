@@ -115,6 +115,20 @@ createApp({
         this.selectedOption = option;
         this.socket.send(JSON.stringify({ type: 'submit-answer', answer: option }));
       },
+      startTimer(duration) {
+        this.timeRemaining = duration;
+        clearInterval(this.timerInterval);
+        this.timerInterval = setInterval(() => {
+          if (this.timeRemaining > 0) {
+            this.timeRemaining -= 1;
+          } else { // time up
+            clearInterval(this.timerInterval); 
+            this.timerEnded = true;
+            this.socket.send(JSON.stringify({ type: 'time-up' }));
+            this.showTimeUpModal();
+          }
+        }, 1000);
+      },
 
   },
 }).mount("body");
