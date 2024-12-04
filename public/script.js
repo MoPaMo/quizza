@@ -5,7 +5,8 @@ createApp({
   data() {
     return {
       count: 1,
-      modalShown: false
+      modalShown: false,
+      answer:''
     }
   }
 }).mount('body')

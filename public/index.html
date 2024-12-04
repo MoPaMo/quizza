@@ -37,7 +37,7 @@
           <p id="question-text">Question will appear here...</p>
           <div id="options-container" class="options"></div>
         </div>
-        <div class="sidebar">
+        <div class="sidebar" @click="modalShown=true">
           <h3>Leaderboard</h3>
           <ul id="players-list"></ul>
         </div>
@@ -50,7 +50,7 @@
       <div class="modal-content">
         <span id="close-modal" class="close" @click="modalShown=false">&times;</span>
         <h2 id="result-text">Result</h2>
-        <p id="correct-answer-text">The correct answer was:</p>
+        <p id="correct-answer-text">The correct answer was: {{answer}}</p>
       </div>
     </div>
   </body>
