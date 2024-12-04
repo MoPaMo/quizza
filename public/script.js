@@ -4,18 +4,24 @@ import { createApp } from 'vue'
 createApp({
   data() {
     return {
-      count: 1,
-      modalShown: false,
-      answer:'hi',
-      gameState:'game',
-      timeRemaining:15,
-      category:'loading',
-      questionText:'loading',
-      questions:["hi", "hi2"],
-      rightQuestion:"",
-      selectedOption:""
-      
-    }
+        playerName: '',
+        gameState: 'join', // (join/ game)
+        playerId: null,
+        players: {},
+        category: 'Loading...',
+        questionText: 'Loading...',
+        questions: [],
+        correctAnswer: '',
+        selectedOption: null,
+        revealAnswer: false,
+        timeRemaining: 15,
+        timerInterval: null,
+        timerEnded: false,
+        modalShown: false,
+        modalType: '', // result /timeUp
+        modalTitle: '',
+        playerScore: 0,
+      }
   }
 }).mount('body')
 
