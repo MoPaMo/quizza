@@ -57,10 +57,14 @@
             </div>
           </div>
         </main>
-        <div class="sidebar" @click="modalShown=true">
-          <h3>Leaderboard</h3>
-          <ul id="players-list"></ul>
-        </div>
+        <div class="sidebar" @click="modalShown = true">
+            <h3>Leaderboard</h3>
+            <ul id="players-list">
+              <li v-for="player in sortedPlayers" :key="player.id">
+                {{ player.name }}: {{ player.score }}
+              </li>
+            </ul>
+          </div>
       </section>
     </div>
 
