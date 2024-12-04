@@ -4,7 +4,8 @@ import { createApp } from 'vue'
 createApp({
   data() {
     return {
-      count: 1
+      count: 1,
+      modalShown: false
     }
   }
 }).mount('body')

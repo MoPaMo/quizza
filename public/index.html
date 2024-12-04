@@ -45,9 +45,10 @@
     </div>
 
     <!-- Result Modal-->
-    <div id="result-modal" class="modal hidden">
+     
+    <div id="result-modal" class="modal" v-if="modalShown">
       <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
+        <span id="close-modal" class="close" @click="modalShown=false">&times;</span>
         <h2 id="result-text">Result</h2>
         <p id="correct-answer-text">The correct answer was:</p>
       </div>
