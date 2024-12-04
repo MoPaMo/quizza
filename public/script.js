@@ -25,7 +25,7 @@ createApp({
       
   },
   computed: {
-    sortedPlayers() {
+    sortedPlayers() { // to get leaderboard sorted by score
       return Object.values(this.players).sort((a, b) => b.score - a.score);
     },
   },
