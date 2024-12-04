@@ -1,35 +1,35 @@
 // public/script.js
-import { createApp } from 'vue'
+import { createApp } from "vue";
 
 createApp({
   data() {
     return {
-        playerName: '',
-        gameState: 'join', // (join/ game)
-        playerId: null,
-        players: {},
-        category: 'Loading...',
-        questionText: 'Loading...',
-        questions: [],
-        correctAnswer: '',
-        selectedOption: null,
-        revealAnswer: false,
-        timeRemaining: 15,
-        timerInterval: null,
-        timerEnded: false,
-        modalShown: false,
-        modalType: '', // result /timeUp
-        modalTitle: '',
-        playerScore: 0,
-      }
-      
+      playerName: "",
+      gameState: "join", // (join/ game)
+      playerId: null,
+      players: {},
+      category: "Loading...",
+      questionText: "Loading...",
+      questions: [],
+      correctAnswer: "",
+      selectedOption: null,
+      revealAnswer: false,
+      timeRemaining: 15,
+      timerInterval: null,
+      timerEnded: false,
+      modalShown: false,
+      modalType: "", // result /timeUp
+      modalTitle: "",
+      playerScore: 0,
+    };
   },
   computed: {
-    sortedPlayers() { // to get leaderboard sorted by score
+    sortedPlayers() {
+      // to get leaderboard sorted by score
       return Object.values(this.players).sort((a, b) => b.score - a.score);
     },
   },
-}).mount('body')
+}).mount("body");
 
 const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
 const socket = new WebSocket(`${wsProtocol}://${location.host}`);
@@ -37,8 +37,6 @@ const socket = new WebSocket(`${wsProtocol}://${location.host}`);
 let playerId = null;
 let playerName = "";
 let timerInterval = null;
-
-
 
 // Current question data
 let currentQuestionData = null;
@@ -98,7 +96,9 @@ socket.addEventListener("message", (event) => {
 // Update the leaderboard
 function updateLeaderboard(players) {
   // Convert players object to an array and sort by score descending
-  const sortedPlayers = Object.values(players).sort((a, b) => b.score - a.score);
+  const sortedPlayers = Object.values(players).sort(
+    (a, b) => b.score - a.score
+  );
 
   // Clear the current list
   playersList.innerHTML = "";
@@ -178,7 +178,7 @@ function showCorrectAnswer(correctAnswer) {
   timerElement.textContent = "0";
 
   setTimeout(() => {
-  resetUI();
+    resetUI();
   }, 5000);
 }
 
@@ -193,7 +193,7 @@ function displayAnswerResult(correct, score) {
   }
 
   correctAnswerText.textContent = `The correct answer was: ${currentQuestionData.answer}`;
-  
+
   // Show the modal
   resultModal.classList.remove("hidden");
 }
