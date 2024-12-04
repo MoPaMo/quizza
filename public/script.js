@@ -139,11 +139,21 @@ createApp({
       this.modalTitle = correct ? "Correct!" : "Wrong!";
       this.modalShown = true;
 
-      setTimeout(() => {
+      setTimeout(() => { //hide modal after 5 seconds
+        this.modalShown = false;
+      }, 5000);
+    },
+    showTimeUpModal() {
+      this.modalType = "timeUp";
+      this.modalTitle = "Time's Up!";
+      this.modalShown = true;
+
+      setTimeout(() => {//hide after 5s
         this.modalShown = false;
       }, 5000);
     },
   },
+  
 }).mount("body");
 
 let playerId = null;
