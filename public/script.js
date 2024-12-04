@@ -37,41 +37,45 @@ createApp({
           return;
         }
         //connect with name
+        this.connectWebSocket(name);
+    },
+    connectWebSocket(name) {
+        const wsProtocol = location.protocol === 'https:' ? 'wss' : 'ws'; //chose secure protocol if https
+        this.socket = new WebSocket(`${wsProtocol}://${location.host}`);
+  
+        this.socket.addEventListener('open', () => { //login with name
+          this.socket.send(JSON.stringify({ type: 'join' }));
+          this.socket.send(JSON.stringify({ type: 'set-name', name }));
+        });
+  
+        this.socket.addEventListener('message', (event) => {
+          const data = JSON.parse(event.data);
+          this.handleSocketMessage(data);
+        });
+  
+        this.socket.addEventListener('close', () => {
+          console.warn('WebSocket connection closed.');
+          // todo: reconnection  if network failure
+        });
+  
+        this.socket.addEventListener('error', (error) => {
+          console.error('WebSocket error:', error);
+          alert("An error occured while listening to the server:", error)
+        });
+  
+        this.gameState = 'game';
+      },
+    
     }
-  },
-}).mount("body");
 
-const wsProtocol = location.protocol === "https:" ? "wss" : "ws";
-const socket = new WebSocket(`${wsProtocol}://${location.host}`);
+  }).mount("body");
+
 
 let playerId = null;
 let playerName = "";
 let timerInterval = null;
 
-// Current question data
-let currentQuestionData = null;
-let selectedOption = null;
 
-// Join the game
-joinBtn.addEventListener("click", () => {
-  const name = nameInput.value.trim();
-  if (name === "") {
-    alert("Please enter your name.");
-    return;
-  }
-  playerName = name;
-  socket.send(JSON.stringify({ type: "join" }));
-  socket.send(JSON.stringify({ type: "set-name", name: playerName }));
-  joinSection.classList.add("hidden");
-  gameSection.classList.remove("hidden");
-});
-
-// Allow pressing "Enter" to join the game
-nameInput.addEventListener("keyup", (event) => {
-  if (event.key === "Enter") {
-    joinBtn.click();
-  }
-});
 
 // Handle incoming messages
 socket.addEventListener("message", (event) => {
