@@ -7,9 +7,10 @@ createApp({
       count: 1,
       modalShown: false,
       answer:'hi',
-      gameState:'join',
+      gameState:'game',
       timeRemaining:15,
-      category:'loading'
+      category:'loading',
+      questionText:'loading',
     }
   }
 }).mount('body')

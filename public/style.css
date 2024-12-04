@@ -59,15 +59,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
     width: 100%;
-    max-width: 800px;
+    max-width: 75rem;
+    margin: 0 auto;
     margin-top: 20px;
 }
 
 .hidden {
     display: none;
 }
-
+main{
+    flex-grow: 1;
+}
 .header {
     width: 100%;
     display: flex;
@@ -91,7 +95,6 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
@@ -134,8 +137,8 @@ body {
 
 /* Sidebar (Leaderboard) */
 .sidebar {
-    width: 100%;
-    max-width: 200px;
+    flex-grow: 0;
+
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -214,24 +217,11 @@ body {
 }
 
 @media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
 
     #game-section {
         flex-direction: row;
+        width: 100%;
     }
-
-    .question-container {
-        width: 70%;
-        margin-right: 20px;
-    }
-
-    .sidebar {
-        width: 25%;
-    }
-
 }
 
 
